@@ -26,15 +26,16 @@ class PlayerTest {
     void addCards() {
         Player p1 = new Player("Luke");
         Card testCard1 = new Card(CardType.BDE, CardColor.GREEN);
-        Card testCard2 = new Card(CardType.BDE, CardColor.GREEN);
+        Card testCard2 = new Card(CardType.BN, CardColor.GREY);
+        Card testCard3 = new Card(CardType.CORPS, CardColor.GREEN);
+        List<Card> testCards = new ArrayList<Card>();
+        testCards.add(testCard1);
+        testCards.add(testCard2);
+        testCards.add(testCard3);
 
+        p1.addCards(testCards);
 
-        List<Card> testHand = new ArrayList<Card>();
-        testHand.add(testCard1);
-
-
-        assertTrue( p1.getHand().contains(testCard1));
-
+        assertTrue( p1.getHand().containsAll(testCards));
     }
 
     @Test

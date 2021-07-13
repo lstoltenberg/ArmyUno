@@ -1,2 +1,4 @@
 com/mss/uno/GameTest.java
  com.mss.uno.GameTest
+com/mss/uno/PlayerTest.java
+ com.mss.uno.PlayerTest

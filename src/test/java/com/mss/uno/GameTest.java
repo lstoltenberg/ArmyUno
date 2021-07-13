@@ -26,6 +26,21 @@ class GameTest {
         return cards;
     }
 
+    public Game setUpTwoPlayerGame(){
+        Player p1 = new Player("Josh");
+        Player p2 = new Player("Luke");
+        List<Player> playerList = new ArrayList<Player>();
+        playerList.add(p1);
+        playerList.add(p2);
+
+        List<Card> deck = new ArrayList<Card>();
+        deck.addAll(this.getSevenCards());
+        deck.addAll(this.getSevenCards());
+
+        Game game = new Game(playerList, deck);
+
+        return game;
+    }
 
     @Test
     public void testDeal(){
@@ -40,29 +55,34 @@ class GameTest {
         game.initialDeal();
 
         assertTrue(deck.isEmpty());
-        assertEquals(7, p1.getHand().size());
+        assertEquals(7, p1.getHandSize());
     }
 
     @Test
     public void testDealManyPLayers(){
+        Game game = setUpTwoPlayerGame();
+
+        game.initialDeal();
+
+        assertTrue(game.deck.isEmpty());
+        assertEquals(7, game.players.get(0).getHandSize());
+        assertEquals(7, game.players.get(1).getHandSize());
+    }
+
+    @Test
+    public void testDrawCard(){
         Player p1 = new Player("Josh");
-        Player p2 = new Player("Luke");
         List<Player> playerList = new ArrayList<Player>();
         playerList.add(p1);
-        playerList.add(p2);
 
         List<Card> deck = new ArrayList<Card>();
-        deck.addAll(this.getSevenCards());
         deck.addAll(this.getSevenCards());
 
         Game game = new Game(playerList, deck);
 
-        game.initialDeal();
 
-        assertTrue(deck.isEmpty());
-        assertEquals(7, p1.getHand().size());
-        assertEquals(7, p2.getHand().size());
+
+
     }
-
 
 }

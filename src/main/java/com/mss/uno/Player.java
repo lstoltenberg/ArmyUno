@@ -14,9 +14,11 @@ public class Player {
         this.hand = new ArrayList<Card>();
     }
 
-    public List<Card> getHand() {
-        return hand;
+    public int getHandSize() {
+        return this.hand.size();
     }
+
+    public List<Card> getHand(){return this.hand;}
 
     public void addCard(Card card){
         this.hand.add(card);
@@ -25,5 +27,8 @@ public class Player {
     public void addCards(List<Card> cards){
         this.hand.addAll(cards);
     }
+
+
+
 
 }

@@ -7,14 +7,13 @@ import com.mss.uno.Card.CardType;
 import java.util.*;
 
 public class Game {
-    List<Player> players;
+    CircularLinkedList<Player> players;
     List<Card> deck;
     List<Card> discardPile;
-    Card curCard;
     int curPlayerIndex;
 
 
-    public Game(List<Player> players) {
+    public Game(CircularLinkedList<Player> players) {
         this.players = players;
         curPlayerIndex = 0;
         this.deck = new ArrayList<Card>();
@@ -33,29 +32,30 @@ public class Game {
                 this.deck.add(new Card(cardType, null));
             }
         }
-
+        this.discardPile = new ArrayList<>();
     }
 
     public void initialDeal() {
-        int index = this.deck.size();
 
-        for(Player p : players){
-            p.addCards(deck.subList(index-7,index));
-            deck.removeAll((deck.subList(index-7,index)));
-            index -= 7;
+        for(Player p : players.values()){
+            p.addCards(deck.subList(0,7));
+            deck.removeAll((deck.subList(0,7)));
         }
+
+        this.discardPile.add(this.deck.remove(0));
     }
 
     public List<Card> getDeck(){return this.deck;}
 
-    public void dealCard(){//String name) {
-//        for(Player p : players){
-//            if( p.name.equals( name ) ){
-//                p.addCard(deck.remove(0));
-//            }
-//        }
-
-        //this.players(this.curPlayerIndex).addCard(this.deck.remove(0));
+    public void dealCard(){
+        players.getCurrent().addCard(deck.remove(0));
     }
+
+    public void playCard(Card card){
+        players.getCurrent().getHand().remove(card);
+        this.discardPile.add(card);
+
+    }
+
 
 }

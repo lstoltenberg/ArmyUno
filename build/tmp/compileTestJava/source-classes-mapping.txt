@@ -1,4 +1,6 @@
 com/mss/uno/PlayerTest.java
  com.mss.uno.PlayerTest
+com/mss/uno/CircularLinkedListTest.java
+ com.mss.uno.CircularLinkedListTest
 com/mss/uno/GameTest.java
  com.mss.uno.GameTest
